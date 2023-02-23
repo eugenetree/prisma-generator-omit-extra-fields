@@ -1,0 +1,17 @@
+{
+  "name": "prisma-generator-omit-extra-fields",
+  "version": "0.1.0",
+  "description": "prisma-generator-omit-extra-fields",
+  "license": "MIT",
+  "main": "dist/generator",
+  "bin": "dist/bin",
+  "scripts": {
+    "dev": "npx tsc -w"
+  },
+  "dependencies": {
+    "@prisma/generator-helper": "^4.10.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}

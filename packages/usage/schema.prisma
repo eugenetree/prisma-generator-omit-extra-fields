@@ -1,0 +1,27 @@
+generator custom {
+  provider = "node ../../node_modules/prisma-generator-omit-extra-fields"
+  output   = "../types"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+  posts     Post[]
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean  @default(false)
+  title     String   
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+}
