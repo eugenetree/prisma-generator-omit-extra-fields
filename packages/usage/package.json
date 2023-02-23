@@ -1,6 +1,10 @@
 {
   "private": true,
   "dependencies": {
+    "@prisma/client": "^4.10.1",
     "prisma-generator-omit-extra-fields": "^0.1.0"
+  },
+  "devDependencies": {
+    "prisma": "^4.10.1"
   }
 }

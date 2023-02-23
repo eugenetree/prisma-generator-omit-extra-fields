@@ -1,10 +1,14 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 generator custom {
   provider = "node ../../node_modules/prisma-generator-omit-extra-fields"
-  output   = "../types"
 }
 
 datasource db {
   provider = "sqlite"
+  // just random db url, added because datasource is required for 'prisma generate'
   url      = "file:dev.db"
 }
 
@@ -21,7 +25,7 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   published Boolean  @default(false)
-  title     String   
+  title     String
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
 }
