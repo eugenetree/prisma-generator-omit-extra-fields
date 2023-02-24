@@ -8,48 +8,46 @@ const prismaTypesToTs: Record<string, string> = {
   'DateTime': 'Date',
 }
 
-const getInputTypesCode = (
-  { modelName, modelFields }:
-      { modelName: DMMF.Model['name']; modelFields: DMMF.Model['fields'] }
-): string => {
-  const defaultInputTypeName = getDefaultInputTypeName(modelName);
-  const partialInputTypeName = getPartialInputTypeName(modelName);
+const isFieldTypeOptional = (field: DMMF.Field): boolean => {
+  return !field.isRequired || field.hasDefaultValue;
+}
+
+const getInputTypesCode = (model: DMMF.Model): string => {
+  const defaultInputTypeName = getDefaultInputTypeName(model.name);
+  const partialInputTypeName = getPartialInputTypeName(model.name);
 
   let result: string = `type ${defaultInputTypeName} = {`;
-  modelFields.forEach((field) => {
-      const tsType = prismaTypesToTs[field.type];
-      if (tsType !== undefined) {
-          result += ` ${field.name}${field.isRequired ? '' : '?'}: ${tsType};`
-      }
+  model.fields.forEach((field) => {
+    const tsType = prismaTypesToTs[field.type];
+    if (tsType !== undefined) {
+      result += ` ${field.name}${isFieldTypeOptional(field) ? '?' : ''}: ${tsType};`
+    }
   })
 
   result += `}; \n\n type ${partialInputTypeName} = {`
-  modelFields.forEach((field) => {
-      const tsType = prismaTypesToTs[field.type];
-      if (tsType !== undefined) {
-          result += ` ${field.name}?: ${tsType};`
-      }
+  model.fields.forEach((field) => {
+    const tsType = prismaTypesToTs[field.type];
+    if (tsType !== undefined) {
+      result += ` ${field.name}?: ${tsType};`
+    }
   })
 
   result += '}'
   return result;
 }
 
-export const getExplicitlyTypedHandlersCode = (
-  { modelName, modelFields }:
-    { modelName: DMMF.Model['name']; modelFields: DMMF.Model['fields'] }
-) => {
-  let result = getInputTypesCode({ modelName, modelFields });
+export const getExplicitlyTypedHandlersCode = (model: DMMF.Model) => {
+  let result = getInputTypesCode(model);
   const handlersData = [
-    { functionName: `polishDefault${modelName}`, typeName: getDefaultInputTypeName(modelName) },
-    { functionName: `polishPartial${modelName}`, typeName: getPartialInputTypeName(modelName) }
+    { functionName: `polishDefault${model.name}`, typeName: getDefaultInputTypeName(model.name) },
+    { functionName: `polishPartial${model.name}`, typeName: getPartialInputTypeName(model.name) }
   ]
 
   for (const { functionName, typeName } of handlersData) {
     result += `\n\n export const ${functionName} = (input: ${typeName}): ${typeName} => {
         const result = {};
     
-        ${getModelFieldsVariableName(modelName)}.forEach((key) => {
+        ${getModelFieldsVariableName(model.name)}.forEach((key) => {
           result[key] = input[key];
         })
     

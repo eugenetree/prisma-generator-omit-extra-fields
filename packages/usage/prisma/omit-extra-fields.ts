@@ -1,9 +1,9 @@
-const userKeys = ['id', 'createdAt', 'email', 'name', 'posts'];
+const userFields = ['id', 'createdAt', 'email', 'name', 'posts'];
 
 export const polishUser = <T>(input: T): T => {
   const result = {};
 
-  userKeys.forEach((key) => {
+  userFields.forEach((key) => {
     result[key] = input[key];
   });
 
@@ -11,8 +11,8 @@ export const polishUser = <T>(input: T): T => {
 };
 
 type UserDefaultInput = {
-  id: number;
-  createdAt: Date;
+  id?: number;
+  createdAt?: Date;
   email: string;
   name?: string;
 };
@@ -29,7 +29,7 @@ export const polishDefaultUser = (
 ): UserDefaultInput => {
   const result = {};
 
-  userKeys.forEach((key) => {
+  userFields.forEach((key) => {
     result[key] = input[key];
   });
 
@@ -41,7 +41,7 @@ export const polishPartialUser = (
 ): UserPartialInput => {
   const result = {};
 
-  userKeys.forEach((key) => {
+  userFields.forEach((key) => {
     result[key] = input[key];
   });
 
@@ -50,7 +50,7 @@ export const polishPartialUser = (
 
 // - - - - - - - - //
 
-const postKeys = [
+const postFields = [
   'id',
   'createdAt',
   'updatedAt',
@@ -63,7 +63,7 @@ const postKeys = [
 export const polishPost = <T>(input: T): T => {
   const result = {};
 
-  postKeys.forEach((key) => {
+  postFields.forEach((key) => {
     result[key] = input[key];
   });
 
@@ -71,10 +71,10 @@ export const polishPost = <T>(input: T): T => {
 };
 
 type PostDefaultInput = {
-  id: number;
-  createdAt: Date;
+  id?: number;
+  createdAt?: Date;
   updatedAt: Date;
-  published: boolean;
+  published?: boolean;
   title: string;
   authorId?: number;
 };
@@ -93,7 +93,7 @@ export const polishDefaultPost = (
 ): PostDefaultInput => {
   const result = {};
 
-  postKeys.forEach((key) => {
+  postFields.forEach((key) => {
     result[key] = input[key];
   });
 
@@ -105,7 +105,7 @@ export const polishPartialPost = (
 ): PostPartialInput => {
   const result = {};
 
-  postKeys.forEach((key) => {
+  postFields.forEach((key) => {
     result[key] = input[key];
   });
 

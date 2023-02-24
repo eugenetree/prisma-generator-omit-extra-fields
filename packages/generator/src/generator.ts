@@ -22,13 +22,13 @@ generatorHandler({
 
     options.dmmf.datamodel.models.forEach((model) => {
       resultCode += `
-          ${getModelFieldsCode({ modelName: model.name, modelFields: model.fields })}
+          ${getModelFieldsCode(model)}
 
   
-          ${getImplicitlyTypedHandlerCode({ modelName: model.name })};\n\n
+          ${getImplicitlyTypedHandlerCode(model)};\n\n
 
 
-          ${getExplicitlyTypedHandlersCode({ modelName: model.name, modelFields: model.fields })}
+          ${getExplicitlyTypedHandlersCode(model)}
 
           // - - - - - - - - //
         `

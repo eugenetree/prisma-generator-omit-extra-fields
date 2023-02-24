@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { polishDefaultPost, polishDefaultUser, polishUser } from './prisma/omit-extra-fields';
+import { polishDefaultPost, polishDefaultUser, polishPartialUser, polishUser } from './prisma/omit-extra-fields';
 
 const prisma = new PrismaClient();
 
@@ -10,7 +10,7 @@ const userWithExtraFields = {
 }
 
 // typescript is satisfied, but prisma will throw error
-// because of 'a: 1'
+// because of extra field 'a: 1'
 prisma.user.create({ data: userWithExtraFields });
 
 // this one will be fine for prisma
@@ -18,3 +18,4 @@ prisma.user.create({ data: polishUser(userWithExtraFields) })
 
 // or this one, if you want more excplicit types
 prisma.user.create({ data: polishDefaultUser(userWithExtraFields) });
+prisma.user.findFirst({ where: polishPartialUser(userWithExtraFields) });

@@ -1,15 +1,14 @@
 import { DMMF } from "@prisma/generator-helper"
+import { getModelFieldsVariableName } from "./common/names"
 
-export const getImplicitlyTypedHandlerCode = (
-    { modelName }: { modelName: DMMF.Model['name'] }
-  ) => {
-    return `export const polish${modelName} = <T>(input: T): T => {
+export const getImplicitlyTypedHandlerCode = (model: DMMF.Model) => {
+  return `export const polish${model.name} = <T>(input: T): T => {
       const result = {};
   
-      ${modelName.toLowerCase()}Keys.forEach((key) => {
+      ${getModelFieldsVariableName(model.name)}.forEach((key) => {
         result[key] = input[key];
       })
   
       return result as T;
     }`
-  }
+}
