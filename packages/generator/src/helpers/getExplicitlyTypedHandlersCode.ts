@@ -1,15 +1,9 @@
 import { DMMF } from "@prisma/generator-helper";
+import { PRISMA_TYPES_TO_TS } from "../constants";
 import { getDefaultInputTypeName, getModelFieldsVariableName, getPartialInputTypeName } from "./common/names";
 
-const prismaTypesToTs: Record<string, string> = {
-  'Int': 'number',
-  'String': 'string',
-  'Boolean': 'boolean',
-  'DateTime': 'Date',
-}
-
 const isFieldTypeOptional = (field: DMMF.Field): boolean => {
-  return !field.isRequired || field.hasDefaultValue;
+  return !field.isRequired || field.hasDefaultValue || Boolean(field.isUpdatedAt);
 }
 
 const getInputTypesCode = (model: DMMF.Model): string => {
@@ -18,16 +12,16 @@ const getInputTypesCode = (model: DMMF.Model): string => {
 
   let result: string = `type ${defaultInputTypeName} = {`;
   model.fields.forEach((field) => {
-    const tsType = prismaTypesToTs[field.type];
-    if (tsType !== undefined) {
+    const tsType = PRISMA_TYPES_TO_TS[field.type];
+    if (tsType) {
       result += ` ${field.name}${isFieldTypeOptional(field) ? '?' : ''}: ${tsType};`
     }
   })
 
   result += `}; \n\n type ${partialInputTypeName} = {`
   model.fields.forEach((field) => {
-    const tsType = prismaTypesToTs[field.type];
-    if (tsType !== undefined) {
+    const tsType = PRISMA_TYPES_TO_TS[field.type];
+    if (tsType) {
       result += ` ${field.name}?: ${tsType};`
     }
   })

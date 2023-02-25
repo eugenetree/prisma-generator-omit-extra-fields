@@ -1,4 +1,4 @@
-const userFields = ['id', 'createdAt', 'email', 'name', 'posts'];
+const userFields = ['id', 'createdAt', 'email', 'name'];
 
 export const polishUser = <T>(input: T): T => {
   const result = {};
@@ -56,7 +56,6 @@ const postFields = [
   'updatedAt',
   'published',
   'title',
-  'author',
   'authorId',
 ];
 
@@ -73,7 +72,7 @@ export const polishPost = <T>(input: T): T => {
 type PostDefaultInput = {
   id?: number;
   createdAt?: Date;
-  updatedAt: Date;
+  updatedAt?: Date;
   published?: boolean;
   title: string;
   authorId?: number;
