@@ -3,7 +3,11 @@ export const DEFAULT_OUTPUT_PATH = './omit-extra-fields.ts'
 
 export const PRISMA_TYPES_TO_TS: Record<string, string> = {
   'Int': 'number',
+  'BigInt': 'number',
+  'Decimal': 'number',
+  'Float': 'number',
   'String': 'string',
+  'Bytes': 'string',
   'Boolean': 'boolean',
   'DateTime': 'Date',
 }

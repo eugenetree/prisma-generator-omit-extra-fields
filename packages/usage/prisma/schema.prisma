@@ -7,9 +7,9 @@ generator custom {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   // just random db url, added because datasource is required for 'prisma generate'
-  url      = "file:dev.db"
+  url      = "abc"
 }
 
 model User {
