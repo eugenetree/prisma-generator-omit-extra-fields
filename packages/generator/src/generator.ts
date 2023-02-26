@@ -10,15 +10,15 @@ import { getModelFieldsCode } from './helpers/getModelFieldsCode';
 import { writeFileSafely } from './utils/writeFileSafely';
 
 generatorHandler({
-	onManifest() {
-		return {
-			version,
-			defaultOutput: DEFAULT_OUTPUT_PATH,
-			prettyName: 'prisma-generator-omit-extra-fields',
-		}
-	},
-	onGenerate: async (options: GeneratorOptions) => {
-		let resultCode = '';
+  onManifest() {
+    return {
+      version,
+      defaultOutput: DEFAULT_OUTPUT_PATH,
+      prettyName: 'prisma-generator-omit-extra-fields',
+    }
+  },
+  onGenerate: async (options: GeneratorOptions) => {
+    let resultCode = '';
 
     options.dmmf.datamodel.models.forEach((model) => {
       resultCode += `
@@ -28,7 +28,7 @@ generatorHandler({
           ${getImplicitlyTypedHandlerCode(model)};\n\n
 
 
-          ${getExplicitlyTypedHandlersCode(model)}
+          ${getExplicitlyTypedHandlersCode({ model, enums: options.dmmf.datamodel.enums })}
 
           // - - - - - - - - //
         `
@@ -36,5 +36,5 @@ generatorHandler({
 
     const writeLocation = path.join(options.generator.output?.value!)
     await writeFileSafely(writeLocation, resultCode)
-	},
+  },
 })

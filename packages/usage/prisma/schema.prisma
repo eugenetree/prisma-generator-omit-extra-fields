@@ -12,11 +12,17 @@ datasource db {
   url      = "abc"
 }
 
+enum Role {
+  Admin
+  Default
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   email     String   @unique
   name      String?
+  role      Role
   posts     Post[]
 }
 

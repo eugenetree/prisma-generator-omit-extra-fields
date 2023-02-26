@@ -1,4 +1,4 @@
-const userFields = ['id', 'createdAt', 'email', 'name'];
+const userFields = ['id', 'createdAt', 'email', 'name', 'role'];
 
 export const polishUser = <T>(input: T): T => {
   const result = {};
@@ -15,6 +15,7 @@ type UserDefaultInput = {
   createdAt?: Date;
   email: string;
   name?: string;
+  role: 'Admin' | 'Default';
 };
 
 type UserPartialInput = {
@@ -22,6 +23,7 @@ type UserPartialInput = {
   createdAt?: Date;
   email?: string;
   name?: string;
+  role?: 'Admin' | 'Default';
 };
 
 export const polishDefaultUser = (

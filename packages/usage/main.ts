@@ -1,13 +1,14 @@
 import { PrismaClient } from '@prisma/client';
-import { polishDefaultPost, polishDefaultUser, polishPartialUser, polishUser } from './prisma/omit-extra-fields';
+import { polishDefaultUser, polishPartialUser, polishUser } from './prisma/omit-extra-fields';
 
 const prisma = new PrismaClient();
 
 const userWithExtraFields = {
   email: 'test@gmail.com',
   name: 'test',
+  role: 'Default',
   a: 1,
-}
+} as const;
 
 // typescript is satisfied, but prisma will throw error
 // because of extra field 'a: 1'
