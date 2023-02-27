@@ -1,6 +1,6 @@
 {
   "name": "prisma-generator-omit-extra-fields",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "protect prisma from extra fields",
   "license": "MIT",
   "main": "dist/generator.js",
