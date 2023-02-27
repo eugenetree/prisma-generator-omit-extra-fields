@@ -1,10 +1,33 @@
 {
   "name": "prisma-generator-omit-extra-fields",
   "version": "0.2.0",
-  "description": "prisma-generator-omit-extra-fields",
+  "description": "protect prisma from extra fields",
   "license": "MIT",
   "main": "dist/generator.js",
   "bin": "dist/bin.js",
+  "author": {
+    "name": "Eugene Tree",
+    "email": "me.eugenetree@gmail.com"
+  },
+  "keywords": [
+    "prisma2",
+    "prisma",
+    "prisma-generator",
+    "prisma-schema",
+    "code-generation",
+    "extra-fields",
+    "extra fields",
+    "omit",
+    "fields"
+  ],
+  "homepage": "https://github.com/eugenetree/prisma-generator-omit-extra-fields",
+  "repository": {
+    "url": "git@github.com:eugenetree/prisma-generator-omit-extra-fields.git"
+  },
+  "bugs": {
+    "email": "me.eugenetree@gmail.com",
+    "url": "https://github.com/eugenetree/prisma-generator-omit-extra-fields/issues"
+  },
   "scripts": {
     "dev": "npx tsc -w"
   },
