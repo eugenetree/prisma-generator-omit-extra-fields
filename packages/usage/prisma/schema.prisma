@@ -3,7 +3,7 @@ generator client {
 }
 
 generator custom {
-  provider = "node ../../node_modules/prisma-generator-omit-extra-fields"
+  provider = "node ../../node_modules/prisma-generator-omit-extra-fields-keep-scalar-plus"
 }
 
 datasource db {

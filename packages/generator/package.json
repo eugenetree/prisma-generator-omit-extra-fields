@@ -1,14 +1,13 @@
 {
-  "name": "prisma-generator-omit-extra-fields",
-  "version": "0.3.1",
-  "description": "protect prisma from extra fields",
+  "name": "prisma-generator-omit-extra-fields-keep-scalar-plus",
+  "version": "0.3.12",
+  "description": "protect prisma from extra fields, add several fixes, forked by hop-t@ariagato.com",
   "license": "MIT",
   "main": "dist/generator.js",
-  "bin": "dist/bin.js",
-  "author": {
-    "name": "Eugene Tree",
-    "email": "me.eugenetree@gmail.com"
+  "bin": {
+    "prisma-generator-omit-extra-fields-keep-scalar-plus": "dist/bin.js"
   },
+  "author": "Eugene Tree <me.eugenetree@gmail.com>",
   "keywords": [
     "prisma2",
     "prisma",
@@ -22,11 +21,11 @@
   ],
   "homepage": "https://github.com/eugenetree/prisma-generator-omit-extra-fields",
   "repository": {
-    "url": "git@github.com:eugenetree/prisma-generator-omit-extra-fields.git"
+    "url": "git+ssh://git@github.com/eugenetree/prisma-generator-omit-extra-fields.git"
   },
   "bugs": {
-    "email": "me.eugenetree@gmail.com",
-    "url": "https://github.com/eugenetree/prisma-generator-omit-extra-fields/issues"
+    "url": "https://github.com/eugenetree/prisma-generator-omit-extra-fields/issues",
+    "email": "me.eugenetree@gmail.com"
   },
   "scripts": {
     "dev": "npx tsc -w"

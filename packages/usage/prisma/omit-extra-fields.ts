@@ -1,10 +1,38 @@
-const userFields = ['id', 'createdAt', 'email', 'name', 'role'];
+const userFields = [
+  { id: 'Int' },
+  { createdAt: 'DateTime' },
+  { email: 'String' },
+  { name: 'String' },
+  { role: 'Role' },
+  { posts: 'Post' },
+];
 
 export const polishUser = <T>(input: T): T => {
   const result = {};
 
-  userFields.forEach((key) => {
-    result[key] = input[key];
+  userFields.forEach((item) => {
+    const key = Object.keys(item)[0];
+    const value = item[key];
+
+    if (
+      !(
+        input[key] === undefined ||
+        input[key] === null ||
+        input[key] === 'null' ||
+        input[key] === 'undefined'
+      )
+    ) {
+      if (value === 'String') result[key] = String(input[key]);
+      if (value === 'DateTime') result[key] = new Date(input[key]);
+      if (
+        value === 'Int' ||
+        value === 'Float' ||
+        value === 'Double' ||
+        value === 'Decimal'
+      )
+        result[key] = input[key] === '' ? undefined : Number(input[key]);
+      else result[key] = input[key];
+    } else result[key] = undefined;
   });
 
   return result as T;
@@ -31,8 +59,29 @@ export const polishDefaultUser = (
 ): UserDefaultInput => {
   const result = {};
 
-  userFields.forEach((key) => {
-    result[key] = input[key];
+  userFields.forEach((item) => {
+    const key = Object.keys(item)[0];
+    const value = item[key];
+
+    if (
+      !(
+        input[key] === undefined ||
+        input[key] === null ||
+        input[key] === 'null' ||
+        input[key] === 'undefined'
+      )
+    ) {
+      if (value === 'String') result[key] = String(input[key]);
+      if (value === 'DateTime') result[key] = new Date(input[key]);
+      if (
+        value === 'Int' ||
+        value === 'Float' ||
+        value === 'Double' ||
+        value === 'Decimal'
+      )
+        result[key] = input[key] === '' ? undefined : Number(input[key]);
+      else result[key] = input[key];
+    } else result[key] = undefined;
   });
 
   return result as UserDefaultInput;
@@ -43,8 +92,29 @@ export const polishPartialUser = (
 ): UserPartialInput => {
   const result = {};
 
-  userFields.forEach((key) => {
-    result[key] = input[key];
+  userFields.forEach((item) => {
+    const key = Object.keys(item)[0];
+    const value = item[key];
+
+    if (
+      !(
+        input[key] === undefined ||
+        input[key] === null ||
+        input[key] === 'null' ||
+        input[key] === 'undefined'
+      )
+    ) {
+      if (value === 'String') result[key] = String(input[key]);
+      if (value === 'DateTime') result[key] = new Date(input[key]);
+      if (
+        value === 'Int' ||
+        value === 'Float' ||
+        value === 'Double' ||
+        value === 'Decimal'
+      )
+        result[key] = input[key] === '' ? undefined : Number(input[key]);
+      else result[key] = input[key];
+    } else result[key] = undefined;
   });
 
   return result as UserPartialInput;
@@ -53,19 +123,41 @@ export const polishPartialUser = (
 // - - - - - - - - //
 
 const postFields = [
-  'id',
-  'createdAt',
-  'updatedAt',
-  'published',
-  'title',
-  'authorId',
+  { id: 'Int' },
+  { createdAt: 'DateTime' },
+  { updatedAt: 'DateTime' },
+  { published: 'Boolean' },
+  { title: 'String' },
+  { author: 'User' },
+  { authorId: 'Int' },
 ];
 
 export const polishPost = <T>(input: T): T => {
   const result = {};
 
-  postFields.forEach((key) => {
-    result[key] = input[key];
+  postFields.forEach((item) => {
+    const key = Object.keys(item)[0];
+    const value = item[key];
+
+    if (
+      !(
+        input[key] === undefined ||
+        input[key] === null ||
+        input[key] === 'null' ||
+        input[key] === 'undefined'
+      )
+    ) {
+      if (value === 'String') result[key] = String(input[key]);
+      if (value === 'DateTime') result[key] = new Date(input[key]);
+      if (
+        value === 'Int' ||
+        value === 'Float' ||
+        value === 'Double' ||
+        value === 'Decimal'
+      )
+        result[key] = input[key] === '' ? undefined : Number(input[key]);
+      else result[key] = input[key];
+    } else result[key] = undefined;
   });
 
   return result as T;
@@ -94,8 +186,29 @@ export const polishDefaultPost = (
 ): PostDefaultInput => {
   const result = {};
 
-  postFields.forEach((key) => {
-    result[key] = input[key];
+  postFields.forEach((item) => {
+    const key = Object.keys(item)[0];
+    const value = item[key];
+
+    if (
+      !(
+        input[key] === undefined ||
+        input[key] === null ||
+        input[key] === 'null' ||
+        input[key] === 'undefined'
+      )
+    ) {
+      if (value === 'String') result[key] = String(input[key]);
+      if (value === 'DateTime') result[key] = new Date(input[key]);
+      if (
+        value === 'Int' ||
+        value === 'Float' ||
+        value === 'Double' ||
+        value === 'Decimal'
+      )
+        result[key] = input[key] === '' ? undefined : Number(input[key]);
+      else result[key] = input[key];
+    } else result[key] = undefined;
   });
 
   return result as PostDefaultInput;
@@ -106,8 +219,29 @@ export const polishPartialPost = (
 ): PostPartialInput => {
   const result = {};
 
-  postFields.forEach((key) => {
-    result[key] = input[key];
+  postFields.forEach((item) => {
+    const key = Object.keys(item)[0];
+    const value = item[key];
+
+    if (
+      !(
+        input[key] === undefined ||
+        input[key] === null ||
+        input[key] === 'null' ||
+        input[key] === 'undefined'
+      )
+    ) {
+      if (value === 'String') result[key] = String(input[key]);
+      if (value === 'DateTime') result[key] = new Date(input[key]);
+      if (
+        value === 'Int' ||
+        value === 'Float' ||
+        value === 'Double' ||
+        value === 'Decimal'
+      )
+        result[key] = input[key] === '' ? undefined : Number(input[key]);
+      else result[key] = input[key];
+    } else result[key] = undefined;
   });
 
   return result as PostPartialInput;
