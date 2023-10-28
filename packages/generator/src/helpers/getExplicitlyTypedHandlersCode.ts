@@ -60,10 +60,10 @@ export const getExplicitlyTypedHandlersCode =
 
     for (const { functionName, typeName } of handlersData) {
       result += `\n\n export const ${functionName} = (input: ${typeName}): ${typeName} => {
-        const result = {};
+        const result:Record<string, any> = {};
     
         ${getModelFieldsVariableName(model.name)}.forEach((key) => {
-          result[key] = input[key];
+          result[key] = (input as any)[key];
         })
     
         return result as ${typeName};
